@@ -63,24 +63,31 @@ namespace pryGestionClientes
                 result++;
             }
 
+            leerDatos.Close();
+            leerDatos.Dispose();
+
             return result;
         }
 
-        public decimal TotalDeuda()
+        public Decimal TotalDeuda()
         {
-            decimal result = 0;
+            Decimal result = 0;
             string datosLeidos = "";
 
             StreamReader leerDatos = new StreamReader(nombreArchivo);
 
             string[] vectorDatos = new string[4];
+            datosLeidos = leerDatos.ReadLine();
 
             while (datosLeidos != null)
             {
                 vectorDatos = datosLeidos.Split(';');
-                result += Convert.ToDecimal(vectorDatos[2]);
+                result = result + Convert.ToDecimal(vectorDatos[2]);
                 datosLeidos = leerDatos.ReadLine();
             }
+
+            leerDatos.Close();
+            leerDatos.Dispose();
 
             return result;
         }
@@ -89,19 +96,117 @@ namespace pryGestionClientes
         {
             decimal result = 0;
             string datosLeidos = "";
+            Int32 cantidadClientes = 0;
 
             StreamReader leerDatos = new StreamReader(nombreArchivo);
 
             string[] vectorDatos = new string[4];
+            datosLeidos = leerDatos.ReadLine();
 
             while (datosLeidos != null)
             {
                 vectorDatos = datosLeidos.Split(';');
-                result = result / 4;
+
+                result = result + Convert.ToDecimal(vectorDatos[2]);
+                datosLeidos = leerDatos.ReadLine();
+                cantidadClientes++;
+            }
+
+             
+
+            leerDatos.Close();
+            leerDatos.Dispose();
+
+            return result / cantidadClientes;
+        }
+
+        public void ListarDeudores(DataGridView dgvListadoClientes)
+        {
+            string datosLeidos = "";
+
+            StreamReader leerDatos = new StreamReader(nombreArchivo);
+
+            string[] vectorDatos = new string[4];
+            datosLeidos = leerDatos.ReadLine();
+
+            dgvListadoClientes.Rows.Clear();
+
+            while (datosLeidos != null)
+            {
+                vectorDatos = datosLeidos.Split(';');
+
+                if (Convert.ToDecimal(vectorDatos[2]) > 0)
+                {
+                    dgvListadoClientes.Rows.Add(
+                        vectorDatos[0], 
+                        vectorDatos[1], 
+                        vectorDatos[2], 
+                        vectorDatos[3]
+                        );
+                }
                 datosLeidos = leerDatos.ReadLine();
             }
 
-            return result;
+            leerDatos.Close();
+            leerDatos.Dispose();
+
+        }
+
+        public decimal CantidadDeudores()
+        {
+            string datosLeidos = "";
+            Int32 cantidadClientes = 0;
+
+            StreamReader leerDatos = new StreamReader(nombreArchivo);
+
+            string[] vectorDatos = new string[4];
+            datosLeidos = leerDatos.ReadLine();
+
+            while (datosLeidos != null)
+            {
+                vectorDatos = datosLeidos.Split(';');
+                if(Convert.ToDecimal(vectorDatos[2]) > 0)
+                {
+                    cantidadClientes++;
+                }
+
+                datosLeidos = leerDatos.ReadLine();
+            }
+
+            leerDatos.Close();
+            leerDatos.Dispose();
+
+            return cantidadClientes;
+        }
+
+        public decimal PromedioDeudores()
+        {
+            string datosLeidos = "";
+            Int32 cantidadClientes = 0;
+            Decimal total = 0;
+
+            StreamReader leerDatos = new StreamReader(nombreArchivo);
+
+            string[] vectorDatos = new string[4];
+            datosLeidos = leerDatos.ReadLine();
+
+            while (datosLeidos != null)
+            {
+                vectorDatos = datosLeidos.Split(';');
+                if (Convert.ToDecimal(vectorDatos[2]) > 0)
+                {
+                    cantidadClientes++;
+
+                    total += Convert.ToDecimal(vectorDatos[2]);
+                }
+
+                datosLeidos = leerDatos.ReadLine();
+            }
+
+            leerDatos.Close();
+            leerDatos.Dispose();
+
+            return total / cantidadClientes;
         }
     }
 }
