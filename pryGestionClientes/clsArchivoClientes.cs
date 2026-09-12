@@ -10,7 +10,18 @@ namespace pryGestionClientes
 {
     internal class clsArchivoClientes
     {
+        public struct RegCliente
+        {
+            public int codigo;
+            public string usuario;
+            public decimal deuda;
+            public decimal limite;
+        }
+
         public string nombreArchivo = "Clientes.csv";
+
+        public  RegCliente[] clientes = new RegCliente[100];
+        public int indice = 0;
 
         public void Grabar(String cod, String nom, String deu, String lim)
         {
@@ -27,9 +38,33 @@ namespace pryGestionClientes
             agregarDatos.Close();
             agregarDatos.Dispose();
         }
+
+        public void LeerArchivo()
+        {
+            indice = 0;
+
+            StreamReader leerDatos = new StreamReader(nombreArchivo);
+            string datosLeidos = leerDatos.ReadLine();
+
+            while (datosLeidos != null)
+            {
+                string[] vectorDatos = datosLeidos.Split(';');
+                
+                clientes[indice].codigo = Convert.ToInt32(vectorDatos[0]);
+                clientes[indice].usuario = vectorDatos[1];
+                clientes[indice].deuda = Convert.ToDecimal(vectorDatos[2]);
+                clientes[indice].limite = Convert.ToDecimal(vectorDatos[3]);
+                indice++;
+                datosLeidos = leerDatos.ReadLine();
+            }
+
+            leerDatos.Close();
+            leerDatos.Dispose();
+        }
         
         public void Listar(DataGridView dgv)
         {
+            //Preguntar al profe porque declaramos datosLeidos "" y despues le asignamos el valor de leerDatos.ReadLine() y no directamente en la declaracion
             string datosLeidos = "";
             string[] vectorDatos = new string[4];
 
@@ -207,6 +242,159 @@ namespace pryGestionClientes
             leerDatos.Dispose();
 
             return total / cantidadClientes;
+        }
+
+        public void OrdenarCodigoAscendente()
+        {
+
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (Int32 k = 0; k < indice - 1; k++)
+                {
+                    if (clientes[k].codigo > clientes[k + 1].codigo)
+                    {
+                        aux = clientes[k];
+                        clientes[k] = clientes[k + 1];
+                        clientes[k + 1] = aux;
+                    }
+                }
+            }
+        }
+
+        public void OrdenarCodigoDescendente()
+        {
+
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (Int32 k = 0; k < indice - 1; k++)
+                {
+                    if (clientes[k].codigo < clientes[k + 1].codigo)
+                    {
+                        aux = clientes[k];
+                        clientes[k] = clientes[k + 1];
+                        clientes[k + 1] = aux;
+                    }
+                }
+            }
+        }
+
+        public void OrdenarNombreAscendente()
+        {
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (Int32 k = 0; k < indice - 1; k++)
+                {
+                    if (clientes[k].usuario.CompareTo(clientes[k + 1].usuario) > 0)
+                    {
+                        aux = clientes[k];
+                        clientes[k] = clientes[k + 1];
+                        clientes[k + 1] = aux;
+                    }
+
+                }
+            }
+        }
+
+        public void OrdenarNombreDescendente()
+        {
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (Int32 k = 0; k < indice - 1; k++)
+                {
+                    if (clientes[k].usuario.CompareTo(clientes[k + 1].usuario) < 0)
+                    {
+                        aux = clientes[k];
+                        clientes[k] = clientes[k + 1];
+                        clientes[k + 1] = aux;
+                    }
+
+                }
+            }
+        }
+
+        public void OrdenarDeudaAscendente()
+        {
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (Int32 k = 0; k < indice - 1; k++)
+                {
+                    if (clientes[k].deuda > clientes[k + 1].deuda)
+                    {
+                        aux = clientes[k];
+                        clientes[k] = clientes[k + 1];
+                        clientes[k + 1] = aux;
+                    }
+
+                }
+            }
+        }
+
+        public void OrdenarDeudaDescendente()
+        {
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (Int32 k = 0; k < indice - 1; k++)
+                {
+                    if (clientes[k].deuda < clientes[k + 1].deuda)
+                    {
+                        aux = clientes[k];
+                        clientes[k] = clientes[k + 1];
+                        clientes[k + 1] = aux;
+                    }
+
+                }
+            }
+        }
+
+        public void OrdenarLimiteAscendente()
+        {
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (Int32 k = 0; k < indice - 1; k++)
+                {
+                    if (clientes[k].limite > clientes[k + 1].limite)
+                    {
+                        aux = clientes[k];
+                        clientes[k] = clientes[k + 1];
+                        clientes[k + 1] = aux;
+                    }
+
+                }
+            }
+        }
+
+
+        public void OrdenarLimiteDescendente()
+        {
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (Int32 k = 0; k < indice - 1; k++)
+                {
+                    if (clientes[k].limite < clientes[k + 1].limite)
+                    {
+                        aux = clientes[k];
+                        clientes[k] = clientes[k + 1];
+                        clientes[k + 1] = aux;
+                    }
+
+                }
+            }
         }
     }
 }

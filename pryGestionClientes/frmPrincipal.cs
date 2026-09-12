@@ -40,5 +40,11 @@ namespace pryGestionClientes
             Form Principal = new frmPrincipal();
             Principal.Close();
         }
+
+        private void listadoDeudoresOrdToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form ListadoOrdenadoDeudores = new frmListadoOrdenadoDeudores();
+            ListadoOrdenadoDeudores.ShowDialog();
+        }
     }
 }

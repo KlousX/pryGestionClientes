@@ -61,6 +61,11 @@
             // cboFiltrar
             // 
             this.cboFiltrar.FormattingEnabled = true;
+            this.cboFiltrar.Items.AddRange(new object[] {
+            "Código",
+            "Nombre",
+            "Límite de Crédito",
+            "Deuda"});
             this.cboFiltrar.Location = new System.Drawing.Point(109, 17);
             this.cboFiltrar.Margin = new System.Windows.Forms.Padding(4);
             this.cboFiltrar.Name = "cboFiltrar";
@@ -70,6 +75,9 @@
             // cboOrdenar
             // 
             this.cboOrdenar.FormattingEnabled = true;
+            this.cboOrdenar.Items.AddRange(new object[] {
+            "Ascendente",
+            "Descendente"});
             this.cboOrdenar.Location = new System.Drawing.Point(524, 16);
             this.cboOrdenar.Margin = new System.Windows.Forms.Padding(4);
             this.cboOrdenar.Name = "cboOrdenar";
@@ -85,6 +93,7 @@
             this.btnListar.TabIndex = 16;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // lblOdernar
             // 
@@ -157,6 +166,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmListadoOrdenadoDeudores";
             this.Text = "Listado Ordenado Deudores";
+            this.Load += new System.EventHandler(this.frmListadoOrdenadoDeudores_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).EndInit();
