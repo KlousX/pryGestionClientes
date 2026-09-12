@@ -22,7 +22,7 @@ namespace pryGestionClientes
         private void btnCargar_Click(object sender, EventArgs e)
         {
             objArchivoClientes.Grabar(txtCodigo.Text, txtNombre.Text, txtDeuda.Text, txtLimite.Text);
-            MessageBox.Show("Se ha cargado correctamente el cliente", "Carga de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show("Se ha cargado correctamente el cliente", "Carga de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 
             txtCodigo.Focus();
 
@@ -30,11 +30,6 @@ namespace pryGestionClientes
             txtNombre.Clear();
             txtDeuda.Clear();
             txtLimite.Clear();
-        }
-
-        private void ControlCajas()
-        {
-
         }
     }
 }

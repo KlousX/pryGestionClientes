@@ -244,6 +244,69 @@ namespace pryGestionClientes
             return total / cantidadClientes;
         }
 
+        public void GenerarReporte()
+        {
+            string DatosLeidos = "";
+            string[] VecDatos = new string[4];
+
+            Int32 cantidad = 0;
+            Decimal total = 0;
+
+            // Asegurate de tener el using System.Text; arriba del todo para el Encoding.UTF8
+            StreamWriter Reporte = new StreamWriter("../../Archivos/Reporte.csv", false, Encoding.UTF8);
+
+            Reporte.WriteLine("");
+            Reporte.WriteLine("Listado de Clientes");
+            Reporte.WriteLine("");
+            // Corregí el orden acá para que coincida con lo que se imprime abajo
+            Reporte.WriteLine("Código;Nombre;Límite;Deuda");
+
+            StreamReader AD = new StreamReader(nombreArchivo);
+
+            DatosLeidos = AD.ReadLine();
+
+            while (DatosLeidos != null)
+            {
+                VecDatos = DatosLeidos.Split(';');
+
+                Reporte.Write(VecDatos[0]);
+                Reporte.Write(";");
+                Reporte.Write(VecDatos[1]);
+                Reporte.Write(";");
+                Reporte.Write(VecDatos[2]);
+                Reporte.Write(";");
+                Reporte.WriteLine(VecDatos[3]);
+
+                cantidad++;
+                total = total + Convert.ToDecimal(VecDatos[2]);
+
+                DatosLeidos = AD.ReadLine();
+            }
+
+            AD.Close();
+            AD.Dispose();
+
+            Reporte.WriteLine("");
+            Reporte.Write("Total de Deuda:;;");
+            Reporte.WriteLine(total);
+            Reporte.Write("Cantidad de Clientes:;;");
+            Reporte.WriteLine(cantidad);
+            Reporte.Write("Promedio de Deuda:;;");
+
+            // Prevención de división por cero
+            if (cantidad > 0)
+            {
+                Reporte.WriteLine(total / cantidad);
+            }
+            else
+            {
+                Reporte.WriteLine("0");
+            }
+
+            Reporte.Close();
+            Reporte.Dispose();
+        }
+
         public void OrdenarCodigoAscendente()
         {
 
