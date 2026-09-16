@@ -27,66 +27,24 @@ namespace pryGestionClientes
 
         private void btnListar_Click(object sender, EventArgs e)
         {
-
-            objArchivoClientes.LeerArchivo();
-
             switch (cboFiltrar.SelectedIndex)
             {
-                case 0:
+                case 0:  
                     if (cboOrdenar.SelectedIndex == 0)
                     {
-                        objArchivoClientes.OrdenarCodigoAscendente();
+                        objArchivoClientes.OrdenarPorCodigoAscendente(dgvListadoClientes);
                     }
                     else
                     {
-                        objArchivoClientes.OrdenarCodigoDescendente();
+                        objArchivoClientes.OrdenarPorCodigoDescendente(dgvListadoClientes);
                     }
                     break;
                 case 1:
-                    if (cboOrdenar.SelectedIndex == 0)
-                    {
-                        objArchivoClientes.OrdenarNombreAscendente();
-                    }
-                    else
-                    {
-                        objArchivoClientes.OrdenarNombreDescendente();
-                    }
+                    
                     break;
                 case 2:
-                    if (cboOrdenar.SelectedIndex == 0)
-                    {
-                        objArchivoClientes.OrdenarLimiteAscendente();
-                    }
-                    else
-                    {
-                        objArchivoClientes.OrdenarLimiteDescendente();
-                    }
+                    
                     break;
-                case 3:
-                    if (cboOrdenar.SelectedIndex == 0)
-                    {
-                        objArchivoClientes.OrdenarDeudaAscendente();
-                    }
-                    else
-                    {
-                        objArchivoClientes.OrdenarDeudaDescendente();
-                    }
-                    break;
-            }
-
-            dgvListadoClientes.Rows.Clear();
-
-            for (int i = 0; i < objArchivoClientes.indice; i++)
-            {
-                if (objArchivoClientes.clientes[i].deuda > 0)
-                {
-                    dgvListadoClientes.Rows.Add(
-                        objArchivoClientes.clientes[i].codigo, 
-                        objArchivoClientes.clientes[i].usuario, 
-                        objArchivoClientes.clientes[i].limite, 
-                        objArchivoClientes.clientes[i].deuda
-                        );
-                }
             }
         }
     }

@@ -26,5 +26,17 @@ namespace pryGestionClientes
             lblMuestraTotal.Text = objArchivoClientes.TotalDeuda().ToString();
             lblMuestraPromedio.Text = objArchivoClientes.PromedioDeuda().ToString();
         }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            objArchivoClientes.GenerarReporte();
+        }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            objArchivoClientes.ReescribirArchivo();
+            MessageBox.Show("Archivo reescrito y ordenado por código de cliente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            objArchivoClientes.Listar(dgvListadoClientes);
+        }
     }
 }

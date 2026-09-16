@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.dgvListadoClientes = new System.Windows.Forms.DataGridView();
+            this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLimite = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDeuda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblDeuda = new System.Windows.Forms.Label();
             this.lblQClientes = new System.Windows.Forms.Label();
             this.lblPromedio = new System.Windows.Forms.Label();
@@ -36,10 +40,8 @@
             this.lblMuestraQ = new System.Windows.Forms.Label();
             this.lblMuestraPromedio = new System.Windows.Forms.Label();
             this.btnListar = new System.Windows.Forms.Button();
-            this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLimite = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDeuda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReporte = new System.Windows.Forms.Button();
+            this.btnOrdenar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +58,26 @@
             this.dgvListadoClientes.Name = "dgvListadoClientes";
             this.dgvListadoClientes.Size = new System.Drawing.Size(562, 248);
             this.dgvListadoClientes.TabIndex = 0;
+            // 
+            // colCodigo
+            // 
+            this.colCodigo.HeaderText = "Código";
+            this.colCodigo.Name = "colCodigo";
+            // 
+            // colNombre
+            // 
+            this.colNombre.HeaderText = "Nombre y Apellido";
+            this.colNombre.Name = "colNombre";
+            // 
+            // colLimite
+            // 
+            this.colLimite.HeaderText = "Límite de Crédito";
+            this.colLimite.Name = "colLimite";
+            // 
+            // colDeuda
+            // 
+            this.colDeuda.HeaderText = "Deuda";
+            this.colDeuda.Name = "colDeuda";
             // 
             // lblDeuda
             // 
@@ -117,39 +139,41 @@
             // 
             // btnListar
             // 
-            this.btnListar.Location = new System.Drawing.Point(197, 296);
+            this.btnListar.Location = new System.Drawing.Point(398, 296);
             this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(207, 23);
+            this.btnListar.Size = new System.Drawing.Size(140, 23);
             this.btnListar.TabIndex = 0;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = true;
             this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
-            // colCodigo
+            // btnReporte
             // 
-            this.colCodigo.HeaderText = "Código";
-            this.colCodigo.Name = "colCodigo";
+            this.btnReporte.Location = new System.Drawing.Point(63, 296);
+            this.btnReporte.Name = "btnReporte";
+            this.btnReporte.Size = new System.Drawing.Size(140, 23);
+            this.btnReporte.TabIndex = 7;
+            this.btnReporte.Text = "Generar reporte";
+            this.btnReporte.UseVisualStyleBackColor = true;
+            this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click);
             // 
-            // colNombre
+            // btnOrdenar
             // 
-            this.colNombre.HeaderText = "Nombre y Apellido";
-            this.colNombre.Name = "colNombre";
-            // 
-            // colLimite
-            // 
-            this.colLimite.HeaderText = "Límite de Crédito";
-            this.colLimite.Name = "colLimite";
-            // 
-            // colDeuda
-            // 
-            this.colDeuda.HeaderText = "Deuda";
-            this.colDeuda.Name = "colDeuda";
+            this.btnOrdenar.Location = new System.Drawing.Point(236, 296);
+            this.btnOrdenar.Name = "btnOrdenar";
+            this.btnOrdenar.Size = new System.Drawing.Size(140, 23);
+            this.btnOrdenar.TabIndex = 8;
+            this.btnOrdenar.Text = "Ordenar";
+            this.btnOrdenar.UseVisualStyleBackColor = true;
+            this.btnOrdenar.Click += new System.EventHandler(this.btnOrdenar_Click);
             // 
             // frmListadoClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 331);
+            this.Controls.Add(this.btnOrdenar);
+            this.Controls.Add(this.btnReporte);
             this.Controls.Add(this.btnListar);
             this.Controls.Add(this.lblMuestraPromedio);
             this.Controls.Add(this.lblMuestraQ);
@@ -180,5 +204,7 @@
         private System.Windows.Forms.Label lblMuestraQ;
         private System.Windows.Forms.Label lblMuestraPromedio;
         private System.Windows.Forms.Button btnListar;
+        private System.Windows.Forms.Button btnReporte;
+        private System.Windows.Forms.Button btnOrdenar;
     }
 }

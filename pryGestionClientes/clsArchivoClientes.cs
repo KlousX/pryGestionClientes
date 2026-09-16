@@ -23,6 +23,50 @@ namespace pryGestionClientes
         public  RegCliente[] clientes = new RegCliente[100];
         public int indice = 0;
 
+        private void OrdenarVector()
+        {
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (int j = 0; j < indice - 1; j++)
+                {
+                    if (clientes[i].codigo > clientes[i + 1].codigo)
+                    {
+                        aux = clientes[i];
+                        clientes[i] = clientes[i + 1];
+                        clientes[i + 1] = aux;
+                    }
+                }
+            }
+        }
+
+        public void ReescribirArchivo()
+        {
+            StreamWriter AD = new StreamWriter(nombreArchivo, false);
+
+            for (int i = 0; i < indice; i++)
+            {
+                AD.Write(clientes[i].codigo);
+                AD.Write(";");
+                AD.Write(clientes[i].usuario);
+                AD.Write(";");
+                AD.Write(clientes[i].deuda);
+                AD.Write(";");
+                AD.WriteLine(clientes[i].limite);
+            }
+
+            AD.Close();
+            AD.Dispose();
+        }
+
+        public void OrdenarArchivo()
+        {
+            PasarDatos();
+            OrdenarVector();
+            ReescribirArchivo();
+        }
+
         public void Grabar(String cod, String nom, String deu, String lim)
         {
             StreamWriter agregarDatos = new StreamWriter(nombreArchivo, true);
@@ -39,7 +83,7 @@ namespace pryGestionClientes
             agregarDatos.Dispose();
         }
 
-        public void LeerArchivo()
+        private void PasarDatos()
         {
             indice = 0;
 
@@ -61,7 +105,7 @@ namespace pryGestionClientes
             leerDatos.Close();
             leerDatos.Dispose();
         }
-        
+
         public void Listar(DataGridView dgv)
         {
             //Preguntar al profe porque declaramos datosLeidos "" y despues le asignamos el valor de leerDatos.ReadLine() y no directamente en la declaracion
@@ -129,7 +173,8 @@ namespace pryGestionClientes
 
         public decimal PromedioDeuda()
         {
-            decimal result = 0;
+            decimal result;
+            decimal resultado = 0;
             string datosLeidos = "";
             Int32 cantidadClientes = 0;
 
@@ -147,12 +192,13 @@ namespace pryGestionClientes
                 cantidadClientes++;
             }
 
-             
-
             leerDatos.Close();
             leerDatos.Dispose();
 
-            return result / cantidadClientes;
+            if(cantidadClientes != 0)
+            {
+                int resultado = result / cantidadClientes;
+            }
         }
 
         public void ListarDeudores(DataGridView dgvListadoClientes)
@@ -252,8 +298,8 @@ namespace pryGestionClientes
             Int32 cantidad = 0;
             Decimal total = 0;
 
-            // Asegurate de tener el using System.Text; arriba del todo para el Encoding.UTF8
-            StreamWriter Reporte = new StreamWriter("../../Archivos/Reporte.csv", false, Encoding.UTF8);
+            // Asegurate de tener el using System.Text; arriba del todo para el Encoding.UTF8(perimite los acentos)
+            StreamWriter Reporte = new StreamWriter("Reporte.csv", false, Encoding.UTF8);
 
             Reporte.WriteLine("");
             Reporte.WriteLine("Listado de Clientes");
@@ -293,170 +339,221 @@ namespace pryGestionClientes
             Reporte.WriteLine(cantidad);
             Reporte.Write("Promedio de Deuda:;;");
 
-            // Prevención de división por cero
-            if (cantidad > 0)
-            {
-                Reporte.WriteLine(total / cantidad);
-            }
-            else
-            {
-                Reporte.WriteLine("0");
-            }
-
             Reporte.Close();
             Reporte.Dispose();
         }
 
-        public void OrdenarCodigoAscendente()
+        
+
+
+        public void OrdenarPorCodigoAscendente(DataGridView Grilla)
         {
+            PasarDatos();
 
             RegCliente aux;
-
-            for (int i = 0; i < indice - 1; i++)
+            
+            for (int i = 0; i < indice - 1;i++)
             {
-                for (Int32 k = 0; k < indice - 1; k++)
+                for (int j = 0; j < indice - 1; j++)
                 {
-                    if (clientes[k].codigo > clientes[k + 1].codigo)
+                    if (clientes[j].codigo > clientes[j + 1].codigo)
                     {
-                        aux = clientes[k];
-                        clientes[k] = clientes[k + 1];
-                        clientes[k + 1] = aux;
+                        aux = clientes[j];
+                        clientes[j] = clientes[j + 1];
+                        clientes[j + 1] = aux;
                     }
                 }
             }
-        }
 
-        public void OrdenarCodigoDescendente()
-        {
-
-            RegCliente aux;
-
-            for (int i = 0; i < indice - 1; i++)
+            Grilla.Rows.Clear();
+            for (int i = 0; i < indice; i++)
             {
-                for (Int32 k = 0; k < indice - 1; k++)
-                {
-                    if (clientes[k].codigo < clientes[k + 1].codigo)
-                    {
-                        aux = clientes[k];
-                        clientes[k] = clientes[k + 1];
-                        clientes[k + 1] = aux;
-                    }
-                }
+                Grilla.Rows.Add(clientes[i].codigo, clientes[i].usuario, clientes[i].deuda, clientes[i].limite);
             }
         }
 
-        public void OrdenarNombreAscendente()
+        public void OrdenarPorCodigoDescendente(DataGridView Grilla)
         {
+            PasarDatos();
+
             RegCliente aux;
 
-            for (int i = 0; i < indice - 1; i++)
+            for(int i = 0; i < indice - 1; i++)
             {
-                for (Int32 k = 0; k < indice - 1; k++)
+                for (int j = 0; j < indice - 1; j++)
                 {
-                    if (clientes[k].usuario.CompareTo(clientes[k + 1].usuario) > 0)
+                    if (clientes[j].codigo < clientes[j + 1].codigo)
                     {
-                        aux = clientes[k];
-                        clientes[k] = clientes[k + 1];
-                        clientes[k + 1] = aux;
+                        aux = clientes[j];
+                        clientes[j] = clientes[j + 1];
+                        clientes[j + 1] = aux;
                     }
-
                 }
+            }
+
+            Grilla.Rows.Clear();
+            for(int i = 0; i < indice; i++)
+            {
+                Grilla.Rows.Add(clientes[i].codigo, clientes[i].usuario, clientes[i].deuda, clientes[i].limite);
             }
         }
 
-        public void OrdenarNombreDescendente()
+        public void OrdenarPorNombreAscendente(DataGridView Grilla)
         {
+            
+            PasarDatos();
             RegCliente aux;
-
+            
             for (int i = 0; i < indice - 1; i++)
             {
-                for (Int32 k = 0; k < indice - 1; k++)
+                for(int j = 0; j < indice - 1; j++)
                 {
-                    if (clientes[k].usuario.CompareTo(clientes[k + 1].usuario) < 0)
+                    if (string.Compare(clientes[j].usuario, clientes[j + 1].usuario) > 0)
                     {
-                        aux = clientes[k];
-                        clientes[k] = clientes[k + 1];
-                        clientes[k + 1] = aux;
+                        aux = clientes[j];
+                        clientes[j] = clientes[j + 1];
+                        clientes[j + 1] = aux;
                     }
-
                 }
+            }
+
+            Grilla.Rows.Clear();
+            for (int i = 0; i < indice; i++)
+            {
+                Grilla.Rows.Add(clientes[i].codigo, clientes[i].usuario, clientes[i].deuda, clientes[i].limite);
             }
         }
 
-        public void OrdenarDeudaAscendente()
+        public void OrdenarPorNombreDescendente(DataGridView Grilla)
         {
+            PasarDatos();
             RegCliente aux;
 
-            for (int i = 0; i < indice - 1; i++)
+            for(int i = 0; i < indice - 1; i++)
             {
-                for (Int32 k = 0; k < indice - 1; k++)
+                for (int j = 0; j < indice - 1; j++)
                 {
-                    if (clientes[k].deuda > clientes[k + 1].deuda)
+                    if (string.Compare(clientes[j].usuario, clientes[j + 1].usuario) < 0)
                     {
-                        aux = clientes[k];
-                        clientes[k] = clientes[k + 1];
-                        clientes[k + 1] = aux;
+                        aux = clientes[j];
+                        clientes[j] = clientes[j + 1];
+                        clientes[j + 1] = aux;
                     }
-
                 }
             }
-        }
 
-        public void OrdenarDeudaDescendente()
-        {
-            RegCliente aux;
+            Grilla.Rows.Clear();
 
-            for (int i = 0; i < indice - 1; i++)
+            for (int i = 0; i < indice; i++)
             {
-                for (Int32 k = 0; k < indice - 1; k++)
-                {
-                    if (clientes[k].deuda < clientes[k + 1].deuda)
-                    {
-                        aux = clientes[k];
-                        clientes[k] = clientes[k + 1];
-                        clientes[k + 1] = aux;
-                    }
-
-                }
-            }
-        }
-
-        public void OrdenarLimiteAscendente()
-        {
-            RegCliente aux;
-
-            for (int i = 0; i < indice - 1; i++)
-            {
-                for (Int32 k = 0; k < indice - 1; k++)
-                {
-                    if (clientes[k].limite > clientes[k + 1].limite)
-                    {
-                        aux = clientes[k];
-                        clientes[k] = clientes[k + 1];
-                        clientes[k + 1] = aux;
-                    }
-
-                }
+                Grilla.Rows.Add(clientes[i].codigo, clientes[i].usuario, clientes[i].deuda, clientes[i].limite);
             }
         }
 
 
-        public void OrdenarLimiteDescendente()
+        public void OrdenarPorDeudaAscendente(DataGridView Grilla)
         {
+            PasarDatos();
+
             RegCliente aux;
 
             for (int i = 0; i < indice - 1; i++)
             {
-                for (Int32 k = 0; k < indice - 1; k++)
+                for (int j = 0; j < indice - 1; j++)
                 {
-                    if (clientes[k].limite < clientes[k + 1].limite)
+                    if (clientes[j].deuda > clientes[j + 1].deuda)
                     {
-                        aux = clientes[k];
-                        clientes[k] = clientes[k + 1];
-                        clientes[k + 1] = aux;
+                        aux = clientes[j];
+                        clientes[j] = clientes[j + 1];
+                        clientes[j + 1] = aux;
                     }
-
                 }
+            }
+
+            Grilla.Rows.Clear();
+            for (int i = 0; i < indice; i++)
+            {
+                Grilla.Rows.Add(clientes[i].codigo, clientes[i].usuario, clientes[i].deuda, clientes[i].limite);
+            }
+        }
+
+        public void OrdenarPorDeudaDescendente(DataGridView Grilla)
+        {
+            PasarDatos();
+
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (int j = 0; j < indice - 1; j++)
+                {
+                    if (clientes[j].deuda < clientes[j + 1].deuda)
+                    {
+                        aux = clientes[j];
+                        clientes[j] = clientes[j + 1];
+                        clientes[j + 1] = aux;
+                    }
+                }
+            }
+
+            Grilla.Rows.Clear();
+            for (int i = 0; i < indice; i++)
+            {
+                Grilla.Rows.Add(clientes[i].codigo, clientes[i].usuario, clientes[i].deuda, clientes[i].limite);
+            }
+        }
+
+        public void OrdenarPorLimiteAscendente(DataGridView Grilla)
+        {
+            PasarDatos();
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (int j = 0; j < indice - 1; j++)
+                {
+                    if (clientes[j].limite > clientes[j + 1].limite)
+                    {
+                        aux = clientes[j];
+                        clientes[j] = clientes[j + 1];
+                        clientes[j + 1] = aux;
+                    }
+                }
+
+            }
+
+            Grilla.Rows.Clear();
+
+            for (int i = 0; i < indice; i++)
+            {
+                Grilla.Rows.Add(clientes[i].codigo, clientes[i].usuario, clientes[i].deuda, clientes[i].limite);
+            }
+        }
+
+        public void OrdenarPorLimiteDescendente(DataGridView Grilla)
+        {
+            PasarDatos();
+            RegCliente aux;
+
+            for (int i = 0; i < indice - 1; i++)
+            {
+                for (int j = 0; j < indice - 1; j++)
+                {
+                    if (clientes[j].limite < clientes[j + 1].limite)
+                    {
+                        aux = clientes[j];
+                        clientes[j] = clientes[j + 1];
+                        clientes[j + 1] = aux;
+                    }
+                }
+
+            }
+
+            Grilla.Rows.Clear();
+
+            for (int i = 0; i < indice; i++)
+            {
+                Grilla.Rows.Add(clientes[i].codigo, clientes[i].usuario, clientes[i].deuda, clientes[i].limite);
             }
         }
     }
