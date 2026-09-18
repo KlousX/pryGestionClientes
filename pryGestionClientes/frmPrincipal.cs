@@ -38,7 +38,7 @@ namespace pryGestionClientes
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form Principal = new frmPrincipal();
-            Principal.Close();
+            this.Close();
         }
 
         private void listadoDeudoresOrdToolStripMenuItem_Click(object sender, EventArgs e)

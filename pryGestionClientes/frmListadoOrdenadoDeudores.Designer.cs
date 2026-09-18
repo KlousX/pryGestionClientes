@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListadoOrdenadoDeudores));
             this.panel1 = new System.Windows.Forms.Panel();
             this.cboFiltrar = new System.Windows.Forms.ComboBox();
             this.cboOrdenar = new System.Windows.Forms.ComboBox();
             this.btnListar = new System.Windows.Forms.Button();
             this.lblOdernar = new System.Windows.Forms.Label();
             this.dgvListadoClientes = new System.Windows.Forms.DataGridView();
+            this.lblFiltrar = new System.Windows.Forms.Label();
             this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLimite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDeuda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblFiltrar = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).BeginInit();
             this.SuspendLayout();
@@ -52,10 +53,9 @@
             this.panel1.Controls.Add(this.lblOdernar);
             this.panel1.Controls.Add(this.dgvListadoClientes);
             this.panel1.Controls.Add(this.lblFiltrar);
-            this.panel1.Location = new System.Drawing.Point(10, 13);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(8, 11);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(777, 405);
+            this.panel1.Size = new System.Drawing.Size(583, 329);
             this.panel1.TabIndex = 24;
             // 
             // cboFiltrar
@@ -64,12 +64,11 @@
             this.cboFiltrar.Items.AddRange(new object[] {
             "Código",
             "Nombre",
-            "Límite de Crédito",
-            "Deuda"});
-            this.cboFiltrar.Location = new System.Drawing.Point(109, 17);
-            this.cboFiltrar.Margin = new System.Windows.Forms.Padding(4);
+            "Deuda",
+            "Límite de Crédito"});
+            this.cboFiltrar.Location = new System.Drawing.Point(82, 14);
             this.cboFiltrar.Name = "cboFiltrar";
-            this.cboFiltrar.Size = new System.Drawing.Size(237, 24);
+            this.cboFiltrar.Size = new System.Drawing.Size(179, 21);
             this.cboFiltrar.TabIndex = 22;
             // 
             // cboOrdenar
@@ -78,18 +77,16 @@
             this.cboOrdenar.Items.AddRange(new object[] {
             "Ascendente",
             "Descendente"});
-            this.cboOrdenar.Location = new System.Drawing.Point(524, 16);
-            this.cboOrdenar.Margin = new System.Windows.Forms.Padding(4);
+            this.cboOrdenar.Location = new System.Drawing.Point(393, 13);
             this.cboOrdenar.Name = "cboOrdenar";
-            this.cboOrdenar.Size = new System.Drawing.Size(237, 24);
+            this.cboOrdenar.Size = new System.Drawing.Size(179, 21);
             this.cboOrdenar.TabIndex = 21;
             // 
             // btnListar
             // 
-            this.btnListar.Location = new System.Drawing.Point(263, 362);
-            this.btnListar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnListar.Location = new System.Drawing.Point(197, 294);
             this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(276, 28);
+            this.btnListar.Size = new System.Drawing.Size(207, 23);
             this.btnListar.TabIndex = 16;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = true;
@@ -99,10 +96,9 @@
             // 
             this.lblOdernar.AutoSize = true;
             this.lblOdernar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblOdernar.Location = new System.Drawing.Point(420, 17);
-            this.lblOdernar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOdernar.Location = new System.Drawing.Point(315, 14);
             this.lblOdernar.Name = "lblOdernar";
-            this.lblOdernar.Size = new System.Drawing.Size(88, 18);
+            this.lblOdernar.Size = new System.Drawing.Size(73, 15);
             this.lblOdernar.TabIndex = 19;
             this.lblOdernar.Text = "Ordenar por";
             // 
@@ -115,12 +111,21 @@
             this.colNombre,
             this.colLimite,
             this.colDeuda});
-            this.dgvListadoClientes.Location = new System.Drawing.Point(13, 49);
-            this.dgvListadoClientes.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvListadoClientes.Location = new System.Drawing.Point(10, 40);
             this.dgvListadoClientes.Name = "dgvListadoClientes";
             this.dgvListadoClientes.RowHeadersWidth = 51;
-            this.dgvListadoClientes.Size = new System.Drawing.Size(749, 305);
+            this.dgvListadoClientes.Size = new System.Drawing.Size(562, 248);
             this.dgvListadoClientes.TabIndex = 17;
+            // 
+            // lblFiltrar
+            // 
+            this.lblFiltrar.AutoSize = true;
+            this.lblFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblFiltrar.Location = new System.Drawing.Point(17, 14);
+            this.lblFiltrar.Name = "lblFiltrar";
+            this.lblFiltrar.Size = new System.Drawing.Size(59, 15);
+            this.lblFiltrar.TabIndex = 18;
+            this.lblFiltrar.Text = "Filtrar por";
             // 
             // colCodigo
             // 
@@ -136,34 +141,25 @@
             // 
             // colLimite
             // 
-            this.colLimite.HeaderText = "Límite de Crédito";
+            this.colLimite.HeaderText = "Deuda";
             this.colLimite.MinimumWidth = 6;
             this.colLimite.Name = "colLimite";
             // 
             // colDeuda
             // 
-            this.colDeuda.HeaderText = "Deuda";
+            this.colDeuda.HeaderText = "Límite de deuda";
             this.colDeuda.MinimumWidth = 6;
             this.colDeuda.Name = "colDeuda";
             // 
-            // lblFiltrar
-            // 
-            this.lblFiltrar.AutoSize = true;
-            this.lblFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblFiltrar.Location = new System.Drawing.Point(23, 17);
-            this.lblFiltrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFiltrar.Name = "lblFiltrar";
-            this.lblFiltrar.Size = new System.Drawing.Size(71, 18);
-            this.lblFiltrar.TabIndex = 18;
-            this.lblFiltrar.Text = "Filtrar por";
-            // 
             // frmListadoOrdenadoDeudores
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(800, 437);
+            this.ClientSize = new System.Drawing.Size(600, 355);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmListadoOrdenadoDeudores";
             this.Text = "Listado Ordenado Deudores";
             this.Load += new System.EventHandler(this.frmListadoOrdenadoDeudores_Load);
@@ -182,10 +178,10 @@
         private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.Label lblOdernar;
         private System.Windows.Forms.DataGridView dgvListadoClientes;
+        private System.Windows.Forms.Label lblFiltrar;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLimite;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDeuda;
-        private System.Windows.Forms.Label lblFiltrar;
     }
 }

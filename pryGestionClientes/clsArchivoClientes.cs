@@ -14,7 +14,7 @@ namespace pryGestionClientes
         {
             public int codigo;
             public string usuario;
-            public decimal deuda;
+            public Decimal deuda;
             public decimal limite;
         }
 
@@ -31,11 +31,11 @@ namespace pryGestionClientes
             {
                 for (int j = 0; j < indice - 1; j++)
                 {
-                    if (clientes[i].codigo > clientes[i + 1].codigo)
+                    if (clientes[j].codigo > clientes[j + 1].codigo)
                     {
-                        aux = clientes[i];
-                        clientes[i] = clientes[i + 1];
-                        clientes[i + 1] = aux;
+                        aux = clientes[j];
+                        clientes[j] = clientes[j + 1];
+                        clientes[j + 1] = aux;
                     }
                 }
             }
@@ -108,7 +108,6 @@ namespace pryGestionClientes
 
         public void Listar(DataGridView dgv)
         {
-            //Preguntar al profe porque declaramos datosLeidos "" y despues le asignamos el valor de leerDatos.ReadLine() y no directamente en la declaracion
             string datosLeidos = "";
             string[] vectorDatos = new string[4];
 
@@ -173,7 +172,7 @@ namespace pryGestionClientes
 
         public decimal PromedioDeuda()
         {
-            decimal result;
+            decimal result = 0;
             decimal resultado = 0;
             string datosLeidos = "";
             Int32 cantidadClientes = 0;
@@ -187,7 +186,7 @@ namespace pryGestionClientes
             {
                 vectorDatos = datosLeidos.Split(';');
 
-                result = result + Convert.ToDecimal(vectorDatos[2]);
+                result += Convert.ToDecimal(vectorDatos[2]);
                 datosLeidos = leerDatos.ReadLine();
                 cantidadClientes++;
             }
@@ -197,8 +196,10 @@ namespace pryGestionClientes
 
             if(cantidadClientes != 0)
             {
-                int resultado = result / cantidadClientes;
+                resultado = result / cantidadClientes;
             }
+
+            return resultado;
         }
 
         public void ListarDeudores(DataGridView dgvListadoClientes)
@@ -297,15 +298,15 @@ namespace pryGestionClientes
 
             Int32 cantidad = 0;
             Decimal total = 0;
+            Decimal promedio = 0;
 
-            // Asegurate de tener el using System.Text; arriba del todo para el Encoding.UTF8(perimite los acentos)
             StreamWriter Reporte = new StreamWriter("Reporte.csv", false, Encoding.UTF8);
 
             Reporte.WriteLine("");
             Reporte.WriteLine("Listado de Clientes");
             Reporte.WriteLine("");
-            // Corregí el orden acá para que coincida con lo que se imprime abajo
-            Reporte.WriteLine("Código;Nombre;Límite;Deuda");
+            
+            Reporte.WriteLine("Código;Nombre;Deuda;Límite");
 
             StreamReader AD = new StreamReader(nombreArchivo);
 
@@ -329,6 +330,8 @@ namespace pryGestionClientes
                 DatosLeidos = AD.ReadLine();
             }
 
+            promedio = total / cantidad;
+
             AD.Close();
             AD.Dispose();
 
@@ -338,6 +341,7 @@ namespace pryGestionClientes
             Reporte.Write("Cantidad de Clientes:;;");
             Reporte.WriteLine(cantidad);
             Reporte.Write("Promedio de Deuda:;;");
+            Reporte.WriteLine(promedio);
 
             Reporte.Close();
             Reporte.Dispose();
@@ -408,7 +412,7 @@ namespace pryGestionClientes
             {
                 for(int j = 0; j < indice - 1; j++)
                 {
-                    if (string.Compare(clientes[j].usuario, clientes[j + 1].usuario) > 0)
+                    if (string.Compare(clientes[j].usuario, clientes[j + 1].usuario) < 0)
                     {
                         aux = clientes[j];
                         clientes[j] = clientes[j + 1];
@@ -433,7 +437,7 @@ namespace pryGestionClientes
             {
                 for (int j = 0; j < indice - 1; j++)
                 {
-                    if (string.Compare(clientes[j].usuario, clientes[j + 1].usuario) < 0)
+                    if (string.Compare(clientes[j].usuario, clientes[j + 1].usuario) > 0)
                     {
                         aux = clientes[j];
                         clientes[j] = clientes[j + 1];
@@ -506,6 +510,7 @@ namespace pryGestionClientes
         public void OrdenarPorLimiteAscendente(DataGridView Grilla)
         {
             PasarDatos();
+
             RegCliente aux;
 
             for (int i = 0; i < indice - 1; i++)
@@ -519,11 +524,9 @@ namespace pryGestionClientes
                         clientes[j + 1] = aux;
                     }
                 }
-
             }
 
             Grilla.Rows.Clear();
-
             for (int i = 0; i < indice; i++)
             {
                 Grilla.Rows.Add(clientes[i].codigo, clientes[i].usuario, clientes[i].deuda, clientes[i].limite);
@@ -533,6 +536,7 @@ namespace pryGestionClientes
         public void OrdenarPorLimiteDescendente(DataGridView Grilla)
         {
             PasarDatos();
+
             RegCliente aux;
 
             for (int i = 0; i < indice - 1; i++)
@@ -546,11 +550,9 @@ namespace pryGestionClientes
                         clientes[j + 1] = aux;
                     }
                 }
-
             }
 
             Grilla.Rows.Clear();
-
             for (int i = 0; i < indice; i++)
             {
                 Grilla.Rows.Add(clientes[i].codigo, clientes[i].usuario, clientes[i].deuda, clientes[i].limite);

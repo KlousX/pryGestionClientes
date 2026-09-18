@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDeudores));
             this.btnListar = new System.Windows.Forms.Button();
             this.lblMuestraPromedio = new System.Windows.Forms.Label();
             this.lblMuestraQ = new System.Windows.Forms.Label();
@@ -169,6 +170,7 @@
             this.Controls.Add(this.lblDeuda);
             this.Controls.Add(this.dgvListadoClientes);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDeudores";
             this.Text = "Deudores";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).EndInit();

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCargaDeClientes));
             this.gbCarga = new System.Windows.Forms.GroupBox();
             this.btnCargar = new System.Windows.Forms.Button();
             this.txtLimite = new System.Windows.Forms.TextBox();
@@ -144,6 +145,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(439, 194);
             this.Controls.Add(this.gbCarga);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCargaDeClientes";
             this.Text = "Carga de Clientes";
             this.gbCarga.ResumeLayout(false);

@@ -40,10 +40,34 @@ namespace pryGestionClientes
                     }
                     break;
                 case 1:
-                    
+                    if (cboOrdenar.SelectedIndex == 1)
+                    {
+                        objArchivoClientes.OrdenarPorNombreAscendente(dgvListadoClientes);
+                    }
+                    else
+                    {
+                        objArchivoClientes.OrdenarPorNombreDescendente(dgvListadoClientes);
+                    }
                     break;
                 case 2:
-                    
+                    if (cboOrdenar.SelectedIndex == 2)
+                    {
+                        objArchivoClientes.OrdenarPorDeudaAscendente(dgvListadoClientes);
+                    }
+                    else
+                    {
+                        objArchivoClientes.OrdenarPorDeudaDescendente(dgvListadoClientes);
+                    }
+                    break;
+                case 3:
+                    if (cboOrdenar.SelectedIndex == 3)
+                    {
+                        objArchivoClientes.OrdenarPorLimiteAscendente(dgvListadoClientes);
+                    }
+                    else
+                    {
+                        objArchivoClientes.OrdenarPorLimiteDescendente(dgvListadoClientes);
+                    }
                     break;
             }
         }

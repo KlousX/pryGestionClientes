@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListadoOrdenado));
             this.btnListar = new System.Windows.Forms.Button();
             this.lblFiltrar = new System.Windows.Forms.Label();
             this.dgvListadoClientes = new System.Windows.Forms.DataGridView();
@@ -45,10 +46,9 @@
             // 
             // btnListar
             // 
-            this.btnListar.Location = new System.Drawing.Point(263, 362);
-            this.btnListar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnListar.Location = new System.Drawing.Point(197, 294);
             this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(276, 28);
+            this.btnListar.Size = new System.Drawing.Size(207, 23);
             this.btnListar.TabIndex = 16;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = true;
@@ -57,10 +57,9 @@
             // 
             this.lblFiltrar.AutoSize = true;
             this.lblFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblFiltrar.Location = new System.Drawing.Point(23, 17);
-            this.lblFiltrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFiltrar.Location = new System.Drawing.Point(17, 14);
             this.lblFiltrar.Name = "lblFiltrar";
-            this.lblFiltrar.Size = new System.Drawing.Size(71, 18);
+            this.lblFiltrar.Size = new System.Drawing.Size(59, 15);
             this.lblFiltrar.TabIndex = 18;
             this.lblFiltrar.Text = "Filtrar por";
             // 
@@ -73,11 +72,10 @@
             this.colNombre,
             this.colLimite,
             this.colDeuda});
-            this.dgvListadoClientes.Location = new System.Drawing.Point(13, 49);
-            this.dgvListadoClientes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvListadoClientes.Location = new System.Drawing.Point(10, 40);
             this.dgvListadoClientes.Name = "dgvListadoClientes";
             this.dgvListadoClientes.RowHeadersWidth = 51;
-            this.dgvListadoClientes.Size = new System.Drawing.Size(749, 305);
+            this.dgvListadoClientes.Size = new System.Drawing.Size(562, 248);
             this.dgvListadoClientes.TabIndex = 17;
             // 
             // colCodigo
@@ -113,48 +111,44 @@
             this.panel1.Controls.Add(this.lblOdernar);
             this.panel1.Controls.Add(this.dgvListadoClientes);
             this.panel1.Controls.Add(this.lblFiltrar);
-            this.panel1.Location = new System.Drawing.Point(19, 18);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(14, 15);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(777, 405);
+            this.panel1.Size = new System.Drawing.Size(583, 329);
             this.panel1.TabIndex = 23;
             // 
             // cboFiltrar
             // 
             this.cboFiltrar.FormattingEnabled = true;
-            this.cboFiltrar.Location = new System.Drawing.Point(109, 17);
-            this.cboFiltrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboFiltrar.Location = new System.Drawing.Point(82, 14);
             this.cboFiltrar.Name = "cboFiltrar";
-            this.cboFiltrar.Size = new System.Drawing.Size(237, 24);
+            this.cboFiltrar.Size = new System.Drawing.Size(179, 21);
             this.cboFiltrar.TabIndex = 22;
             // 
             // cboOrdenar
             // 
             this.cboOrdenar.FormattingEnabled = true;
-            this.cboOrdenar.Location = new System.Drawing.Point(524, 16);
-            this.cboOrdenar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboOrdenar.Location = new System.Drawing.Point(393, 13);
             this.cboOrdenar.Name = "cboOrdenar";
-            this.cboOrdenar.Size = new System.Drawing.Size(237, 24);
+            this.cboOrdenar.Size = new System.Drawing.Size(179, 21);
             this.cboOrdenar.TabIndex = 21;
             // 
             // lblOdernar
             // 
             this.lblOdernar.AutoSize = true;
             this.lblOdernar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblOdernar.Location = new System.Drawing.Point(420, 17);
-            this.lblOdernar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOdernar.Location = new System.Drawing.Point(315, 14);
             this.lblOdernar.Name = "lblOdernar";
-            this.lblOdernar.Size = new System.Drawing.Size(88, 18);
+            this.lblOdernar.Size = new System.Drawing.Size(73, 15);
             this.lblOdernar.TabIndex = 19;
             this.lblOdernar.Text = "Ordenar por";
             // 
             // frmListadoOrdenado
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(815, 433);
+            this.ClientSize = new System.Drawing.Size(611, 352);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmListadoOrdenado";
             this.Text = "Listado Ordenado";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).EndInit();

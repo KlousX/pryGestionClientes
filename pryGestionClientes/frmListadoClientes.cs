@@ -34,7 +34,7 @@ namespace pryGestionClientes
 
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
-            objArchivoClientes.ReescribirArchivo();
+            objArchivoClientes.OrdenarArchivo();
             MessageBox.Show("Archivo reescrito y ordenado por código de cliente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             objArchivoClientes.Listar(dgvListadoClientes);
         }

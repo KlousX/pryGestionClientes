@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListadoClientes));
             this.dgvListadoClientes = new System.Windows.Forms.DataGridView();
             this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -159,7 +160,7 @@
             // 
             // btnOrdenar
             // 
-            this.btnOrdenar.Location = new System.Drawing.Point(236, 296);
+            this.btnOrdenar.Location = new System.Drawing.Point(227, 296);
             this.btnOrdenar.Name = "btnOrdenar";
             this.btnOrdenar.Size = new System.Drawing.Size(140, 23);
             this.btnOrdenar.TabIndex = 8;
@@ -182,6 +183,7 @@
             this.Controls.Add(this.lblQClientes);
             this.Controls.Add(this.lblDeuda);
             this.Controls.Add(this.dgvListadoClientes);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmListadoClientes";
             this.Text = "Listado Clientes";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).EndInit();
